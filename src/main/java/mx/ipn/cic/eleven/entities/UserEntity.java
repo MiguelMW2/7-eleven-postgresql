@@ -1,10 +1,17 @@
 package mx.ipn.cic.eleven.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class UserEntity {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
 	private String name;
@@ -16,6 +23,13 @@ public class UserEntity {
 	private String userName;
 
 	private String password;
+
+	@OneToOne(mappedBy="users", cascade=CascadeType.ALL)
+	private AddressEntity address;
+
+	public UserEntity() {
+		super();
+	}
 
 	public UserEntity(Integer id, String name, String lastName, String secondLastName, String userName, String password) {
 		super();

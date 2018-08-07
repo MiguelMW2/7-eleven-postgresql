@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8" />
+<title>Home</title>
 </head>
 <body>
+
+	<h1>Home</h1>
+	<div>
+		<button><a th:href="@{/user/all}">Catálogo de Usuarios</a></button>
+	</div>
+	<div>
+		<button><a th:href="@{/product/all}">Catálogo de Productos</a></button>
+	</div>
+	<div>
+		<button><a th:href="@{/sale/all}">Venta</a></button>
+	</div>
 
 </body>
 </html>

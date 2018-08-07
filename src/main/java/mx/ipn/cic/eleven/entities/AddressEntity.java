@@ -1,10 +1,17 @@
 package mx.ipn.cic.eleven.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class AddressEntity {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
 	private String street;
@@ -19,8 +26,16 @@ public class AddressEntity {
 
 	private String zipCode;
 
+	@OneToOne
+	@JoinColumn(name="fk_user")
+	private UserEntity users;
+
+	public AddressEntity() {
+		super();
+	}
+
 	public AddressEntity(Integer id, String street, String district, Integer externalNumber, Integer internalNumber,
-			String state, String zipCode) {
+			String state, String zipCode, UserEntity user) {
 		super();
 		this.id = id;
 		this.street = street;
@@ -29,10 +44,11 @@ public class AddressEntity {
 		this.internalNumber = internalNumber;
 		this.state = state;
 		this.zipCode = zipCode;
+		this.users = user;
 	}
 
 	public AddressEntity(String street, String district, Integer externalNumber, Integer internalNumber, String state,
-			String zipCode) {
+			String zipCode, UserEntity user) {
 		super();
 		this.street = street;
 		this.district = district;
@@ -40,6 +56,7 @@ public class AddressEntity {
 		this.internalNumber = internalNumber;
 		this.state = state;
 		this.zipCode = zipCode;
+		this.users = user;
 	}
 
 	public Integer getId() {
@@ -98,10 +115,18 @@ public class AddressEntity {
 		this.zipCode = zipCode;
 	}
 
+	public UserEntity getUser() {
+		return users;
+	}
+
+	public void setUser(UserEntity user) {
+		this.users = user;
+	}
+
 	@Override
 	public String toString() {
-		return String.format(
-				"AddressEntity [id=%s, street=%s, district=%s, externalNumber=%s, internalNumber=%s, state=%s, zipCode=%s]",
-				id, street, district, externalNumber, internalNumber, state, zipCode);
+		return "AddressEntity [id=" + id + ", street=" + street + ", district=" + district + ", externalNumber="
+				+ externalNumber + ", internalNumber=" + internalNumber + ", state=" + state + ", zipCode=" + zipCode
+				+ ", user=" + users + "]";
 	}
 }
