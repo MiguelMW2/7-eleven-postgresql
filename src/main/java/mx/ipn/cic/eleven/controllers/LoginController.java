@@ -1,7 +1,9 @@
 package mx.ipn.cic.eleven.controllers;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,9 +20,10 @@ public class LoginController {
 	}
 
 	@PostMapping(path="/authenticate")
-	public ModelAndView authenticate()
+	public ModelAndView authenticate(@ModelAttribute(name="user") String user)
 	{
 		ModelAndView mav = new ModelAndView("home");
+		
 		return mav;
 	}
 }

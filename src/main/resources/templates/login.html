@@ -10,10 +10,11 @@
 	
 	<form action="#"
 		th:action="@{/login/authenticate}"
+		th:object="${user}"
 		method="post">
 
-		Usuario:		<input type="text"><br />
-		Contraseña:		<input type="password"><br />
+		Usuario:		<input type="text" th:field="*{username}"><br />
+		Contraseña:		<input type="password" th:field="*{password}"><br />
 		<button type="submit">Ingresar</button><br />
 	</form>
 	<button>Crear cuenta</button>
