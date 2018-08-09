@@ -1,4 +1,6 @@
+mx\ipn\cic\eleven\controllers\ProductController.class
 mx\ipn\cic\eleven\entities\AddressEntity.class
+mx\ipn\cic\eleven\repositories\IProductRepository.class
 mx\ipn\cic\eleven\entities\ProductEntity.class
 mx\ipn\cic\eleven\entities\SaleEntity.class
 mx\ipn\cic\eleven\controllers\AddressController.class
@@ -11,3 +13,4 @@ mx\ipn\cic\eleven\entities\DetailSaleEntity.class
 mx\ipn\cic\eleven\repositories\IUserRepository.class
 mx\ipn\cic\eleven\repositories\IAddressRepository.class
 mx\ipn\cic\eleven\entities\UserEntity.class
+mx\ipn\cic\eleven\services\ProductService.class

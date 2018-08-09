@@ -38,7 +38,7 @@ public class UserController {
 		ModelAndView mav = new ModelAndView("address/newForm");
 		UserEntity saved = new UserEntity();
 		saved = this.userService.register(user);
-		mav.addObject("idUser", saved.getId());
+		mav.addObject("user", saved);
 		mav.addObject("address", new AddressEntity());
 		return mav;
 	}

@@ -27,7 +27,7 @@ public class AddressEntity {
 	private String zipCode;
 
 	@OneToOne
-	@JoinColumn(name="fk_user")
+	@JoinColumn(name="fk_users_id")
 	private UserEntity users;
 
 	public AddressEntity() {

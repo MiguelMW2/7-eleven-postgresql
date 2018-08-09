@@ -26,8 +26,8 @@ public class AddressController {
 			@ModelAttribute(name="address") AddressEntity address,
 			@ModelAttribute(name="user") UserEntity user
 	) {
-		UserEntity found = this.userService.findById(user.getId());
-		System.out.println(found);
+		UserEntity found = userService.findById(user.getId());
+		address.setUser(found);
 		this.addressService.register(address);
 		return "redirect:/user/all";
 	}

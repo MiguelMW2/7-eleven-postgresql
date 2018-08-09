@@ -1,9 +1,13 @@
 package mx.ipn.cic.eleven.entities;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class ProductEntity {
@@ -22,7 +26,15 @@ public class ProductEntity {
 
 	private Integer upc;
 
-	public ProductEntity(Integer id, String name, String description, Double price, Integer stock, Integer upc) {
+	@OneToMany(mappedBy="products")
+	private Collection<DetailSaleEntity> detailSales = new ArrayList<DetailSaleEntity>();
+
+	public ProductEntity() {
+		super();
+	}
+
+	public ProductEntity(Integer id, String name, String description, Double price, Integer stock, Integer upc,
+			Collection<DetailSaleEntity> detailSales) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -30,15 +42,18 @@ public class ProductEntity {
 		this.price = price;
 		this.stock = stock;
 		this.upc = upc;
+		this.detailSales = detailSales;
 	}
 
-	public ProductEntity(String name, String description, Double price, Integer stock, Integer upc) {
+	public ProductEntity(String name, String description, Double price, Integer stock, Integer upc,
+			Collection<DetailSaleEntity> detailSales) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.stock = stock;
 		this.upc = upc;
+		this.detailSales = detailSales;
 	}
 
 	public Integer getId() {
@@ -89,9 +104,18 @@ public class ProductEntity {
 		this.upc = upc;
 	}
 
+	public Collection<DetailSaleEntity> getDetailSales() {
+		return detailSales;
+	}
+
+	public void setDetailSales(Collection<DetailSaleEntity> detailSales) {
+		this.detailSales = detailSales;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("ProductEntity [id=%s, name=%s, description=%s, price=%s, stock=%s, upc=%s]", id, name,
-				description, price, stock, upc);
+		return String.format(
+				"ProductEntity [id=%s, name=%s, description=%s, price=%s, stock=%s, upc=%s, detailSales=%s]", id, name,
+				description, price, stock, upc, detailSales);
 	}
 }

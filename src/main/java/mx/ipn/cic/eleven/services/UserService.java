@@ -33,4 +33,12 @@ public class UserService {
 		}
 		return null;
 	}
+
+	public boolean findByUserNameAndPassword(UserEntity user) {
+		UserEntity found = this.userRepository.findByUserNameAndPassword(user.getUserName(), user.getPassword());
+		if(found != null) {
+			return true;			
+		}
+		return false;
+	}
 }
