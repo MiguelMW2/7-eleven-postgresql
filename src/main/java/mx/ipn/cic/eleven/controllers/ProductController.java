@@ -12,7 +12,7 @@ import mx.ipn.cic.eleven.entities.ProductEntity;
 import mx.ipn.cic.eleven.services.ProductService;
 
 @Controller
-@RequestMapping(name="/product")
+@RequestMapping(path="/product")
 public class ProductController {
 
 	@Autowired

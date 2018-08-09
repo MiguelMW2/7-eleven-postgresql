@@ -24,7 +24,7 @@ public class ProductEntity {
 
 	private Integer stock;
 
-	private Integer upc;
+	private String upc;
 
 	@OneToMany(mappedBy="products")
 	private Collection<DetailSaleEntity> detailSales = new ArrayList<DetailSaleEntity>();
@@ -33,7 +33,7 @@ public class ProductEntity {
 		super();
 	}
 
-	public ProductEntity(Integer id, String name, String description, Double price, Integer stock, Integer upc,
+	public ProductEntity(Integer id, String name, String description, Double price, Integer stock, String upc,
 			Collection<DetailSaleEntity> detailSales) {
 		super();
 		this.id = id;
@@ -45,7 +45,7 @@ public class ProductEntity {
 		this.detailSales = detailSales;
 	}
 
-	public ProductEntity(String name, String description, Double price, Integer stock, Integer upc,
+	public ProductEntity(String name, String description, Double price, Integer stock, String upc,
 			Collection<DetailSaleEntity> detailSales) {
 		super();
 		this.name = name;
@@ -96,11 +96,11 @@ public class ProductEntity {
 		this.stock = stock;
 	}
 
-	public Integer getUpc() {
+	public String getUpc() {
 		return upc;
 	}
 
-	public void setUpc(Integer upc) {
+	public void setUpc(String upc) {
 		this.upc = upc;
 	}
 

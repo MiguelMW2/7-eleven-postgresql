@@ -26,15 +26,21 @@ public class LoginController {
 		mav.addObject("user", new UserEntity());
 		return mav;
 	}
-
-	@PostMapping(path="/authenticate")
-	public ModelAndView authenticate(@ModelAttribute(name="user") UserEntity user)
+	
+	@GetMapping(path="/home")
+	public ModelAndView home()
 	{
 		ModelAndView mav = new ModelAndView("home");
-		ModelAndView mav2 = new ModelAndView("login");
+		mav.addObject("user", new UserEntity());
+		return mav;
+	}
+
+	@PostMapping(path="/authenticate")
+	public String authenticate(@ModelAttribute(name="user") UserEntity user)
+	{
 		if(this.userService.findByUserNameAndPassword(user)) {
-			return mav;
+			return "redirect:/login/home";
 		}
-		return mav2;
+		return "redirect:/login";
 	}
 }
