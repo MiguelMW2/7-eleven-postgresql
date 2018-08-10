@@ -5,7 +5,7 @@
 <meta charset="UTF-8" />
 <title>Venta</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="../../js/saleScript.js"></script>
+<script type="text/javascript" th:src="@{/js/saleScript.js}"></script>
 </head>
 <body>
 	<div>
@@ -42,13 +42,11 @@
 		<a th:href="@{/payment}"><button>Siguiente</button></a>
 	</div>
 	<div>
-		<form action="#" th:action="@{/product/search}">
-
-			<input placeholder="Nombre" type="text" th:field="*{name}">
-			<input placeholder="UPC" type="text" th:field="*{upc}">
+		<form th:action="@{/rest/product/search}">
+			<input placeholder="Nombre" type="text" name="name">
+			<input placeholder="UPC" type="text" name="upc">
 			<button type="submit">Buscar</button>
-
-		</form>
+		</form>		
 	</div>
 	<div>
 		<h3>Productos Encontrados</h3>
