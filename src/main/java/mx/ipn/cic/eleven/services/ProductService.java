@@ -21,4 +21,8 @@ public class ProductService {
 	public ProductEntity register(ProductEntity product) {
 		return this.productRepository.save(product);
 	}
+	
+	public List<ProductEntity> search(String name, String upc) {
+		return this.productRepository.findByNameContainingOrUpcContaining(name, upc);
+	}
 }

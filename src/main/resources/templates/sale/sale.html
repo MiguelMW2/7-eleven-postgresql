@@ -4,6 +4,8 @@
 <head>
 <meta charset="UTF-8" />
 <title>Venta</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/saleScript.js"></script>
 </head>
 <body>
 	<div>
@@ -12,14 +14,35 @@
 	</div>
 	<div>
 		<h3>Buscar Producto</h3>
-		lista asignados
+		<table>
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Descripción</th>
+					<th>Precio</th>
+					<th>Stock</th>
+					<th>UPC</th>
+					<th>Asignar</th> 
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="chosenProduct:${chosenProducts}">
+					<td th:text="${chosenProduct.name}"></td>
+					<td th:text="${chosenProduct.description}"></td>
+					<td th:text="${chosenProduct.price}"></td>
+					<td th:text="${chosenProduct.stock}"></td>
+					<td th:text="${chosenProduct.upc}"></td>
+					<td><a th:href="#"><button>Eliminar</button></a></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 	<div>
 		<a th:href="@{/home}"><button>Menú Principal</button></a>
-		<a th:href="@{/continue}"><button>Siguiente</button></a>
+		<a th:href="@{/payment}"><button>Siguiente</button></a>
 	</div>
 	<div>
-		<form action="#" th:action="@{/sale/search}">
+		<form action="#" th:action="@{/product/search}">
 
 			<input placeholder="Nombre" type="text" th:field="*{name}">
 			<input placeholder="UPC" type="text" th:field="*{upc}">
