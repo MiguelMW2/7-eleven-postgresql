@@ -20,6 +20,9 @@
 					$("#postResultDiv").html("<strong>Error</strong>");
 				}
 				console.log(result);
+				mongod --dbpath Documents/MongoDB/Databases
+				username
+				123
 				*/
 			},
 			error : function(e) {

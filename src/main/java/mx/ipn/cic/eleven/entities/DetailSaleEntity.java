@@ -24,6 +24,14 @@ public class DetailSaleEntity {
 	@JoinColumn(name="fk_products_id")
 	private ProductEntity products;
 
+	/*@DBRef
+	 * @JsonBackReference
+	 * private SellEntity sell
+	 * @DBRef
+	 * @Transient
+	 * private List<SellDetailEntity> detail
+	*/
+
 	public DetailSaleEntity() {
 		super();
 	}
