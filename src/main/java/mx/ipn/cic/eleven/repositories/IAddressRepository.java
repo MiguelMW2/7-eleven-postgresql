@@ -8,4 +8,5 @@ import mx.ipn.cic.eleven.entities.AddressEntity;
 @Repository
 public interface IAddressRepository extends JpaRepository<AddressEntity, Integer>{
 
+	AddressEntity findByUsers_Id(Integer id);
 }

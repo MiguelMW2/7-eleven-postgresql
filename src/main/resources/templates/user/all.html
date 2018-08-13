@@ -22,7 +22,6 @@
 					<th>Dirección</th>
 					<th>Editar</th>
 					<th>Eliminar</th>
-					<th>Cambio Contraseña</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -31,10 +30,9 @@
 					<td th:text="${user.lastName}"></td>
 					<td th:text="${user.secondLastName}"></td>
 					<td th:text="${user.userName}"></td>
-					<td><button>Detalle</button></td>
-					<td><button>Editar</button></td>
-					<td><button>Eliminar</button></td>
-					<td><button>Cambio Contraseña</button></td>
+					<td><a th:href="@{'/address/detail/'+${user.id}}"><button>Detalle</button></a></td>
+					<td><a th:href="@{'/user/edit/'+${user.id}}"><button>Editar</button></a></td>
+					<td><a th:href="@{'/user/delete/'+${user.id}}"><button>Eliminar</button></a></td>
 				</tr>
 			</tbody>
 		</table>

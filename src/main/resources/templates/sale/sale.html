@@ -42,11 +42,9 @@
 		<a th:href="@{/payment}"><button>Siguiente</button></a>
 	</div>
 	<div>
-		<form th:action="@{/rest/product/search}">
-			<input placeholder="Nombre" type="text" name="name">
-			<input placeholder="UPC" type="text" name="upc">
-			<button type="submit">Buscar</button>
-		</form>		
+		<input placeholder="Nombre" type="text" id="name" name="name">
+		<input placeholder="UPC" type="text" id="upc" name="upc">
+		<button onclick="buscarProducto()" type="submit">Buscar</button>
 	</div>
 	<div>
 		<h3>Productos Encontrados</h3>

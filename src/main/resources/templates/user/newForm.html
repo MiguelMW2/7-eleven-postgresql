@@ -13,6 +13,7 @@
 		th:object="${user}"
 		method="post">
 
+		<input hidden="true" th:field="*{id}">
 		<input placeholder="Nombre" type="text" th:field="*{name}">
 		<input placeholder="Apellido Paterno" type="text" th:field="*{lastName}">
 		<input placeholder="Apellido Materno" type="text" th:field="*{secondLastName}">

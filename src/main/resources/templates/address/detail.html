@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Address Details</title>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>Calle</th>
+				<th>Colonia</th>
+				<th>Número exterior</th>
+				<th>Número interior</th>
+				<th>Estado</th>
+				<th>Código Postal</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:object="${address}">
+				<td th:text="*{street}"></td>
+				<td th:text="*{district}"></td>
+				<td th:text="*{externalNumber}"></td>
+				<td th:text="*{internalNumber}"></td>
+				<td th:text="*{state}"></td>
+				<td th:text="*{zipCode}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
