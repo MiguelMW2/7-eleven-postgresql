@@ -25,6 +25,7 @@ public class ProductRESTController {
 	public ResponseEntity<List<ProductEntity>> search(
 			@PathVariable(name="name") String name,
 			@PathVariable(name="upc") String upc
+			/*RequestBody*/
 	) {
 		ResponseEntity<List<ProductEntity>> response;
 		try {

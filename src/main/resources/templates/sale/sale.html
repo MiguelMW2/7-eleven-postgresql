@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -42,13 +42,15 @@
 		<a th:href="@{/payment}"><button>Siguiente</button></a>
 	</div>
 	<div>
+
 		<input placeholder="Nombre" type="text" id="name" name="name">
 		<input placeholder="UPC" type="text" id="upc" name="upc">
+
 		<button onclick="buscarProducto()" type="submit">Buscar</button>
 	</div>
 	<div>
 		<h3>Productos Encontrados</h3>
-		<table>
+		<table>		
 			<thead>
 				<tr>
 					<th>Nombre</th>
