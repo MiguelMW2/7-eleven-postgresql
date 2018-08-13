@@ -3,11 +3,11 @@
 
 		let name = $("#name").val();
 		let upc = $("#upc").val();
-		console.log(name + " ---> " + upc);
+		console.log()
 		$.ajax({
 			type : "GET",
 			contentType : "application/json",
-			url : window.location + "rest/product/search/" + name + "/" + upc;
+			url : "/rest/product/search/" + name + "/" + upc,
 			dataType : 'json',
 			success : function(result) {
 				/*
