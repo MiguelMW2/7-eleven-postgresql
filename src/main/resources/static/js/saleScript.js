@@ -1,5 +1,5 @@
 $(function() {
-	searchProduct = function () {
+	searchProduct = function (idSale) {
 		let name = $("#name").val();
 		let upc = $("#upc").val();
 		$.ajax({
@@ -9,14 +9,14 @@ $(function() {
 			dataType : 'json',
 			success : function(result) {
 				$("#products").empty();
-				$.each(result, function (index, element) {
+				$.each(result, function (index, product) {
 					$("#products").append( "<tr>" );
-					$("#products").append( "<td>" + element.name + "</td>" );
-					$("#products").append( "<td>" + element.description + "</td>" );
-					$("#products").append( "<td>" + element.price + "</td>" );
-					$("#products").append( "<td>" + element.stock + "</td>" );
-					$("#products").append( "<td>" + element.upc + "</td>" );
-					$("#products").append( "<td><button onclick='selectProduct(" + element.id + ")'>" + "Seleccionar" + "</button></td>" );
+					$("#products").append( "<td>" + product.name + "</td>" );
+					$("#products").append( "<td>" + product.description + "</td>" );
+					$("#products").append( "<td>" + product.price + "</td>" );
+					$("#products").append( "<td>" + product.stock + "</td>" );
+					$("#products").append( "<td>" + product.upc + "</td>" );
+					$("#products").append( "<td><button onclick='selectProduct(" + product, idSale + ")'>" + "Seleccionar" + "</button></td>" );
 					$("#products").append( "</tr>" );
 				});
 			},
@@ -26,19 +26,24 @@ $(function() {
 		});	
 	}
 
-	selectProduct = function (id) {
+	selectProduct = function (product, idSale) {
 		$.ajax({
-			type : "GET",
+			type : "POST",
 			contentType : "application/json",
-			url : "/rest/product/search/" + id,
+			url : "/rest/detailSale/save",
+			data : { product, idSale },
 			dataType : 'json',
 			success : function(result) {
+				/*
 				$("#selectedProducts").append( "<tr>" );
 				$("#selectedProducts").append( "<td>" + result.name + "</td>" );
 				$("#selectedProducts").append( "<td>" + result.description + "</td>" );
 				$("#selectedProducts").append( "<td>" + result.price + "</td>" );
 				$("#selectedProducts").append( "<td>" +  + "</td>" );
+				$("#selectedProducts").append( "<td><button onclick='deleteProduct(" + element.id + ")'>" + "Eliminar" + "</button></td>" );
 				$("#selectedProducts").append( "</tr>" );
+				*/
+				console.log("Listo");
 			},
 			error : function(e) {
 				alert("Error!");

@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8" />
-<title>Venta</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" th:src="@{/js/saleScript.js}"></script>
+	<meta charset="UTF-8" />
+	<title>Venta</title>
+	<link rel="stylesheet" type="text/css" href="/css/sale.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/saleScript.js}"></script>
 </head>
 <body>
 	<div>
@@ -14,7 +15,7 @@
 	</div>
 	<div>
 		<h3>Buscar Producto</h3>
-		<table>
+		<table class="table">
 			<thead>
 				<tr>
 					<th>Nombre</th>
@@ -32,11 +33,9 @@
 		<a th:href="@{/payment}"><button>Siguiente</button></a>
 	</div>
 	<div>
-
 		<input placeholder="Nombre" type="text" id="name" name="name">
 		<input placeholder="UPC" type="text" id="upc" name="upc">
-
-		<button onclick="searchProduct()" type="submit">Buscar</button>
+		<button th:onclick="'searchProduct('+${sale.id}+')'" type="submit">Buscar</button>
 	</div>
 	<div>
 		<h3>Productos Encontrados</h3>
