@@ -1,39 +1,48 @@
-
-	function buscarProducto() {
-
-
+$(function() {
+	searchProduct = function () {
 		let name = $("#name").val();
 		let upc = $("#upc").val();
-		console.log()
 		$.ajax({
 			type : "GET",
 			contentType : "application/json",
 			url : "/rest/product/search/" + name + "/" + upc,
 			dataType : 'json',
 			success : function(result) {
-				/*
-				console.log("success");
-				if(result.status == "Done"){
-
-					$("#postResultDiv").html("<p style='background-color:#7FA7B0; color:white; padding:20px 20px 20px 20px'>" + 
-												"Post Successfully! <br>" +
-												"---> Customer's Info: FirstName = " + 
-												result.data.firstname + " ,LastName = " + result.data.lastname + "</p>");
-				}else{
-					$("#postResultDiv").html("<strong>Error</strong>");
-
-				}*/
-				console.log(result);
-				/*mongod --dbpath Documents/MongoDB/Databases
-				username
-				123*/
-				
-
+				$("#products").empty();
+				$.each(result, function (index, element) {
+					$("#products").append( "<tr>" );
+					$("#products").append( "<td>" + element.name + "</td>" );
+					$("#products").append( "<td>" + element.description + "</td>" );
+					$("#products").append( "<td>" + element.price + "</td>" );
+					$("#products").append( "<td>" + element.stock + "</td>" );
+					$("#products").append( "<td>" + element.upc + "</td>" );
+					$("#products").append( "<td><button onclick='selectProduct(" + element.id + ")'>" + "Seleccionar" + "</button></td>" );
+					$("#products").append( "</tr>" );
+				});
 			},
 			error : function(e) {
-				alert("Error!")
-				console.log("ERROR: ", e);
+				alert("No se encontraron productos");
+			}
+		});	
+	}
+
+	selectProduct = function (id) {
+		$.ajax({
+			type : "GET",
+			contentType : "application/json",
+			url : "/rest/product/search/" + id,
+			dataType : 'json',
+			success : function(result) {
+				$("#selectedProducts").append( "<tr>" );
+				$("#selectedProducts").append( "<td>" + result.name + "</td>" );
+				$("#selectedProducts").append( "<td>" + result.description + "</td>" );
+				$("#selectedProducts").append( "<td>" + result.price + "</td>" );
+				$("#selectedProducts").append( "<td>" +  + "</td>" );
+				$("#selectedProducts").append( "</tr>" );
+			},
+			error : function(e) {
+				alert("Error!");
 			}
 		});
-		
 	}
+});

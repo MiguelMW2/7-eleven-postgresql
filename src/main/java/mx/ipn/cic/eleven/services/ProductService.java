@@ -1,6 +1,8 @@
 package mx.ipn.cic.eleven.services;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +26,15 @@ public class ProductService {
 	
 	public List<ProductEntity> search(String name, String upc) {
 		return this.productRepository.findByNameContainingOrUpcContaining(name, upc);
+	}
+
+	public ProductEntity search(Integer id) {
+		Optional<ProductEntity> found = this.productRepository.findById(id);
+		try {
+			return found.get();
+		} catch (NoSuchElementException e) {
+			System.out.println("No se encontró el producto");
+		}
+		return null;
 	}
 }

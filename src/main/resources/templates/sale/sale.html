@@ -20,20 +20,10 @@
 					<th>Nombre</th>
 					<th>Descripción</th>
 					<th>Precio</th>
-					<th>Stock</th>
-					<th>UPC</th>
-					<th>Asignar</th> 
+					<th>Quantity</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr th:each="chosenProduct:${chosenProducts}">
-					<td th:text="${chosenProduct.name}"></td>
-					<td th:text="${chosenProduct.description}"></td>
-					<td th:text="${chosenProduct.price}"></td>
-					<td th:text="${chosenProduct.stock}"></td>
-					<td th:text="${chosenProduct.upc}"></td>
-					<td><a th:href="#"><button>Eliminar</button></a></td>
-				</tr>
+			<tbody id="selectedProducts">
 			</tbody>
 		</table>
 	</div>
@@ -46,7 +36,7 @@
 		<input placeholder="Nombre" type="text" id="name" name="name">
 		<input placeholder="UPC" type="text" id="upc" name="upc">
 
-		<button onclick="buscarProducto()" type="submit">Buscar</button>
+		<button onclick="searchProduct()" type="submit">Buscar</button>
 	</div>
 	<div>
 		<h3>Productos Encontrados</h3>
@@ -61,15 +51,7 @@
 					<th>Asignar</th> 
 				</tr>
 			</thead>
-			<tbody>
-				<tr th:each="product:${products}">
-					<td th:text="${product.name}"></td>
-					<td th:text="${product.description}"></td>
-					<td th:text="${product.price}"></td>
-					<td th:text="${product.stock}"></td>
-					<td th:text="${product.upc}"></td>
-					<td><a th:href="#"><button>Seleccionar</button></a></td>
-				</tr>
+			<tbody id="products">
 			</tbody>
 		</table>
 	</div>

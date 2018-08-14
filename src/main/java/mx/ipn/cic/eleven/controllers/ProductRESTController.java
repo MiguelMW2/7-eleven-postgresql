@@ -36,4 +36,19 @@ public class ProductRESTController {
 		}
 		return response;
 	}
+
+	@GetMapping(path="/search/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ProductEntity> search(
+			@PathVariable(name="id") Integer id
+			/*RequestBody*/
+	) {
+		ResponseEntity<ProductEntity> response;
+		try {
+			ProductEntity foundProduct = this.productService.search(id);
+			response = new ResponseEntity<ProductEntity>(foundProduct, HttpStatus.OK);
+		} catch (Exception e) {
+			response = new ResponseEntity<ProductEntity>(HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+		return response;
+	}
 }
