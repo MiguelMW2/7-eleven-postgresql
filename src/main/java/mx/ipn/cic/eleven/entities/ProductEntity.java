@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class ProductEntity {
 
@@ -20,20 +22,21 @@ public class ProductEntity {
 
 	private String description;
 
-	private Double price;
+	private double price;
 
-	private Integer stock;
+	private double stock;
 
 	private String upc;
 
 	@OneToMany(mappedBy="products")
+	@JsonBackReference
 	private Collection<DetailSaleEntity> detailSales = new ArrayList<DetailSaleEntity>();
 
 	public ProductEntity() {
 		super();
 	}
 
-	public ProductEntity(Integer id, String name, String description, Double price, Integer stock, String upc,
+	public ProductEntity(Integer id, String name, String description, double price, double stock, String upc,
 			Collection<DetailSaleEntity> detailSales) {
 		super();
 		this.id = id;
@@ -45,7 +48,7 @@ public class ProductEntity {
 		this.detailSales = detailSales;
 	}
 
-	public ProductEntity(String name, String description, Double price, Integer stock, String upc,
+	public ProductEntity(String name, String description, double price, double stock, String upc,
 			Collection<DetailSaleEntity> detailSales) {
 		super();
 		this.name = name;
@@ -80,19 +83,19 @@ public class ProductEntity {
 		this.description = description;
 	}
 
-	public Double getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(Double price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
-	public Integer getStock() {
+	public double getStock() {
 		return stock;
 	}
 
-	public void setStock(Integer stock) {
+	public void setStock(double stock) {
 		this.stock = stock;
 	}
 

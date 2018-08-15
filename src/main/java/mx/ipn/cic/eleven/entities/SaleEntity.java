@@ -1,8 +1,8 @@
 package mx.ipn.cic.eleven.entities;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class SaleEntity {
 
@@ -18,9 +20,9 @@ public class SaleEntity {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
-	private Date date;
+	private LocalDateTime date;
 
-	private Double total;
+	private double total;
 
 	private String payment;
 
@@ -29,13 +31,19 @@ public class SaleEntity {
 	private UserEntity users;
 
 	@OneToMany(mappedBy="sales")
+	@JsonBackReference
 	private Collection<DetailSaleEntity> detailSales = new ArrayList<DetailSaleEntity>();
 
 	public SaleEntity() {
 		super();
 	}
 
-	public SaleEntity(Integer id, Date date, Double total, String payment, UserEntity users,
+	public SaleEntity(LocalDateTime date) {
+		super();
+		this.date = date;
+	}
+
+	public SaleEntity(Integer id, LocalDateTime date, double total, String payment, UserEntity users,
 			Collection<DetailSaleEntity> detailSales) {
 		super();
 		this.id = id;
@@ -46,7 +54,7 @@ public class SaleEntity {
 		this.detailSales = detailSales;
 	}
 
-	public SaleEntity(Date date, Double total, String payment, UserEntity users,
+	public SaleEntity(LocalDateTime date, double total, String payment, UserEntity users,
 			Collection<DetailSaleEntity> detailSales) {
 		super();
 		this.date = date;
@@ -64,19 +72,19 @@ public class SaleEntity {
 		this.id = id;
 	}
 
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 
-	public Double getTotal() {
+	public double getTotal() {
 		return total;
 	}
 
-	public void setTotal(Double total) {
+	public void setTotal(double total) {
 		this.total = total;
 	}
 

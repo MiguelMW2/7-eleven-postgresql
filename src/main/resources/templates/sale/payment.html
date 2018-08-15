@@ -6,14 +6,15 @@
 <title>Payment</title>
 </head>
 <body>
-	<select>
-		<option value="volvo">Tarjeta Debito</option>
-		<option value="saab">Tarjeta Credito</option>
-		<option value="mercedes">Transferencia</option>
-		<option value="audi">Cheque</option>
-	</select>
-	<div>
-		<a th:href="@{/sale/summary}"><button>Siguiente</button></a>
-	</div>
+	<form th:action="@{/sale/register}" th:object="${sale}" method="post">
+		<input hidden="true" th:field="*{id}">
+		<select th:field="*{payment}">
+			<option value="Tarjeta Débito">Tarjeta Debito</option>
+			<option value="Tarjeta Crédito">Tarjeta Credito</option>
+			<option value="Transferencia">Transferencia</option>
+			<option value="Cheque">Cheque</option>
+		</select>
+		<button type="submit">Continuar</button>
+	</form>
 </body>
 </html>

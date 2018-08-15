@@ -11,14 +11,15 @@ $(function() {
 			success : function(result) {
 				$("#products").empty();
 				$.each(result, function (index, product) {
-					$("#products").append( "<tr>" );
-					$("#products").append( "<td>" + product.name + "</td>" );
-					$("#products").append( "<td>" + product.description + "</td>" );
-					$("#products").append( "<td>" + product.price + "</td>" );
-					$("#products").append( "<td>" + product.stock + "</td>" );
-					$("#products").append( "<td>" + product.upc + "</td>" );
-					$("#products").append( "<td><button onclick='selectProduct(" + idSale + "," + product.id + ")'>" + "Seleccionar" + "</button></td>" );
-					$("#products").append( "</tr>" );
+					let table = "<tr>";
+					table += "<td>" + product.name + "</td>";
+					table += "<td>" + product.description + "</td>";
+					table += "<td>" + product.price + "</td>";
+					table += "<td>" + product.stock + "</td>";
+					table += "<td>" + product.upc + "</td>";
+					table += "<td><button onclick='selectProduct(" + idSale + "," + JSON.stringify(product) + ")'>" + "Seleccionar" + "</button></td>";
+					table += "</tr>";
+					$("#products").append(table);
 				});
 			},
 			error : function(e) {
@@ -27,27 +28,29 @@ $(function() {
 		});	
 	});
 
-	selectProduct = function (idSale, idProduct) {
+	selectProduct = function (idSale, product) {
 		$.ajax({
 			type : "POST",
 			contentType : "application/json",
 			url : "/rest/detailSale/save",
 			data : JSON.stringify({
 				"sales" : { "id": idSale },
-				"products" : { "id" : idProduct }
+				"products" : product
 			}),
 			dataType : 'json',
 			success : function(result) {
-				/*
-				$("#selectedProducts").append( "<tr>" );
-				$("#selectedProducts").append( "<td>" + result.name + "</td>" );
-				$("#selectedProducts").append( "<td>" + result.description + "</td>" );
-				$("#selectedProducts").append( "<td>" + result.price + "</td>" );
-				$("#selectedProducts").append( "<td>" +  + "</td>" );
-				$("#selectedProducts").append( "<td><button onclick='deleteProduct(" + element.id + ")'>" + "Eliminar" + "</button></td>" );
-				$("#selectedProducts").append( "</tr>" );
-				*/
-				console.log(result);
+				if(!($("tbody#selectedProducts tr#" + result.products.id).length > 0)) {
+					let table = "<tr id='" + result.products.id + "'>";
+					table += "<td>" + result.products.name + "</td>";
+					table += "<td>" + result.products.description + "</td>";
+					table += "<td>" + result.products.price + "</td>"
+					table += "<td class='quantity'>" + result.quantityProduct + "</td>"
+					table += "</tr>";
+					$("#selectedProducts").append(table);
+				}
+				else {
+					$("#selectedProducts tr#" + result.products.id + " td.quantity").text(result.quantityProduct);
+				}
 			},
 			error : function(e) {
 				alert("Error!");

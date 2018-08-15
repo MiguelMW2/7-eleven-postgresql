@@ -12,16 +12,16 @@ public class DetailSaleService {
 	@Autowired
 	private IDetailSaleRepository detailSaleRepository;
 
-	public DetailSaleEntity save (Integer idSale, Integer idProduct) {
-		return this.detailSaleRepository.findBySales_IdAndProducts_Id(idSale, idProduct);
-		/*
-		if(detailSale.getQuantityProduct() == null) {
+	public DetailSaleEntity save (DetailSaleEntity detailSale) {
+		DetailSaleEntity found = this.detailSaleRepository.findBySales_IdAndProducts_Id(detailSale.getSales().getId(), detailSale.getProducts().getId());
+		if (found == null) {
 			detailSale.setQuantityProduct(1);
+			return this.detailSaleRepository.save(detailSale);
 		}
 		else {
-			detailSale.setQuantityProduct(	detailSale.getQuantityProduct()	+ 1 );
+			found.setQuantityProduct( found.incrementQuantity() );
+			this.detailSaleRepository.save(found);
+			return found;
 		}
-		//this.detailSaleService.save(detailSale);*/
 	}
 }
-	

@@ -18,9 +18,9 @@ public class AddressEntity {
 
 	private String district;
 
-	private Integer externalNumber;
+	private int externalNumber;
 
-	private Integer internalNumber;
+	private int internalNumber;
 
 	private String state;
 
@@ -34,7 +34,7 @@ public class AddressEntity {
 		super();
 	}
 
-	public AddressEntity(Integer id, String street, String district, Integer externalNumber, Integer internalNumber,
+	public AddressEntity(Integer id, String street, String district, int externalNumber, int internalNumber,
 			String state, String zipCode, UserEntity user) {
 		super();
 		this.id = id;
@@ -47,7 +47,7 @@ public class AddressEntity {
 		this.users = user;
 	}
 
-	public AddressEntity(String street, String district, Integer externalNumber, Integer internalNumber, String state,
+	public AddressEntity(String street, String district, int externalNumber, int internalNumber, String state,
 			String zipCode, UserEntity user) {
 		super();
 		this.street = street;
@@ -83,19 +83,19 @@ public class AddressEntity {
 		this.district = district;
 	}
 
-	public Integer getExternalNumber() {
+	public int getExternalNumber() {
 		return externalNumber;
 	}
 
-	public void setExternalNumber(Integer externalNumber) {
+	public void setExternalNumber(int externalNumber) {
 		this.externalNumber = externalNumber;
 	}
 
-	public Integer getInternalNumber() {
+	public int getInternalNumber() {
 		return internalNumber;
 	}
 
-	public void setInternalNumber(Integer internalNumber) {
+	public void setInternalNumber(int internalNumber) {
 		this.internalNumber = internalNumber;
 	}
 

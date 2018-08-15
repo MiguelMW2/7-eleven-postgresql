@@ -46,7 +46,7 @@ public class AddressController {
 		UserEntity found = userService.findById(user.getId());
 		address.setUser(found);
 		this.addressService.register(address);
-		return "redirect:/address/all";
+		return "redirect:/user/all";
 	}
 
 	@GetMapping(path="/edit/{id}")

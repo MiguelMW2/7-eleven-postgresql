@@ -14,7 +14,7 @@ public class DetailSaleEntity {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
-	private Integer quantityProduct;
+	private double quantityProduct;
 
 	@ManyToOne
 	@JoinColumn(name="fk_sales_id")
@@ -36,7 +36,7 @@ public class DetailSaleEntity {
 		super();
 	}
 
-	public DetailSaleEntity(Integer id, Integer quantityProduct, SaleEntity sales, ProductEntity products) {
+	public DetailSaleEntity(Integer id, double quantityProduct, SaleEntity sales, ProductEntity products) {
 		super();
 		this.id = id;
 		this.quantityProduct = quantityProduct;
@@ -44,7 +44,7 @@ public class DetailSaleEntity {
 		this.products = products;
 	}
 
-	public DetailSaleEntity(Integer quantityProduct, SaleEntity sales, ProductEntity products) {
+	public DetailSaleEntity(double quantityProduct, SaleEntity sales, ProductEntity products) {
 		super();
 		this.quantityProduct = quantityProduct;
 		this.sales = sales;
@@ -59,11 +59,11 @@ public class DetailSaleEntity {
 		this.id = id;
 	}
 
-	public Integer getQuantityProduct() {
+	public double getQuantityProduct() {
 		return quantityProduct;
 	}
 
-	public void setQuantityProduct(Integer quantityProduct) {
+	public void setQuantityProduct(double quantityProduct) {
 		this.quantityProduct = quantityProduct;
 	}
 
@@ -81,6 +81,10 @@ public class DetailSaleEntity {
 
 	public void setProducts(ProductEntity products) {
 		this.products = products;
+	}
+
+	public double incrementQuantity() {
+		return ++quantityProduct;
 	}
 
 	@Override

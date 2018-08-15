@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import mx.ipn.cic.eleven.entities.DetailSaleEntity;
 import mx.ipn.cic.eleven.entities.SaleEntity;
 import mx.ipn.cic.eleven.repositories.ISaleRepository;
 
@@ -48,5 +49,13 @@ public class SaleService {
 	public boolean delete(Integer id) {
 		this.saleRepository.deleteById(id);
 		return true;
+	}
+
+	public double calculate(SaleEntity sale) {
+		double result = 0;
+		for (DetailSaleEntity detailSale : sale.getDetailSales()) {
+			result = result + detailSale.getProducts().getPrice() * detailSale.getQuantityProduct();
+		}
+		return result;
 	}
 }

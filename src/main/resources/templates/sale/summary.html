@@ -6,10 +6,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Cajero
-	Fecha
-	Pago
-	Total
-	<a th:href="@{}"><button>Pagar</button></a>
+	<form th:action="@{/sale/register}" th:object="${sale}">
+		<input hidden="true" th:field="*{id}">
+		<p>Hola</p>
+		<button type="submit">Pagar</button>
+	</form>
 </body>
 </html>
