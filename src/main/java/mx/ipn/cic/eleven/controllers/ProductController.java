@@ -46,7 +46,7 @@ public class ProductController {
 			@RequestParam(name="upc") String upc) {
 
 		ModelAndView mav = new ModelAndView("");
-		mav.addObject("products", this.productService.search(name, upc));
+		mav.addObject("products", this.productService.findByNameUpc(name, upc));
 		return mav;
 	}
 }

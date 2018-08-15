@@ -16,10 +16,17 @@ public class SaleController {
 	@Autowired
 	private SaleService saleService;
 
+	@GetMapping(path="/all")
+	public ModelAndView s() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("sales", this.saleService.allSales());
+		return mav;
+	}
+
 	@GetMapping(path="/sale")
 	public ModelAndView sale() {
 		ModelAndView mav = new ModelAndView("/sale/sale");
-		SaleEntity sale = this.saleService.save( new SaleEntity() );
+		SaleEntity sale = this.saleService.register( new SaleEntity() );
 		mav.addObject("sale", sale);
 		return mav;
 	}

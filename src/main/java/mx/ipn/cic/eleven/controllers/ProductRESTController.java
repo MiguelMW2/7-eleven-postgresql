@@ -29,7 +29,7 @@ public class ProductRESTController {
 	) {
 		ResponseEntity<List<ProductEntity>> response;
 		try {
-			List<ProductEntity> foundProducts = this.productService.search(name, upc);
+			List<ProductEntity> foundProducts = this.productService.findByNameUpc(name, upc);
 			response = new ResponseEntity<List<ProductEntity>>(foundProducts, HttpStatus.OK);
 		} catch (Exception e) {
 			response = new ResponseEntity<List<ProductEntity>>(HttpStatus.UNPROCESSABLE_ENTITY);
@@ -44,7 +44,7 @@ public class ProductRESTController {
 	) {
 		ResponseEntity<ProductEntity> response;
 		try {
-			ProductEntity foundProduct = this.productService.search(id);
+			ProductEntity foundProduct = this.productService.findById(id);
 			response = new ResponseEntity<ProductEntity>(foundProduct, HttpStatus.OK);
 		} catch (Exception e) {
 			response = new ResponseEntity<ProductEntity>(HttpStatus.UNPROCESSABLE_ENTITY);

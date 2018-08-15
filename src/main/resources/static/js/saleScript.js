@@ -1,7 +1,8 @@
 $(function() {
-	searchProduct = function (idSale) {
+	$("#searchProduct").click(function () {
 		let name = $("#name").val();
 		let upc = $("#upc").val();
+		let idSale = $("#idSale").val();
 		$.ajax({
 			type : "GET",
 			contentType : "application/json",
@@ -16,7 +17,7 @@ $(function() {
 					$("#products").append( "<td>" + product.price + "</td>" );
 					$("#products").append( "<td>" + product.stock + "</td>" );
 					$("#products").append( "<td>" + product.upc + "</td>" );
-					$("#products").append( "<td><button onclick='selectProduct(" + product, idSale + ")'>" + "Seleccionar" + "</button></td>" );
+					$("#products").append( "<td><button onclick='selectProduct(" + idSale + "," + product.id + ")'>" + "Seleccionar" + "</button></td>" );
 					$("#products").append( "</tr>" );
 				});
 			},
@@ -24,14 +25,17 @@ $(function() {
 				alert("No se encontraron productos");
 			}
 		});	
-	}
+	});
 
-	selectProduct = function (product, idSale) {
+	selectProduct = function (idSale, idProduct) {
 		$.ajax({
 			type : "POST",
 			contentType : "application/json",
 			url : "/rest/detailSale/save",
-			data : { product, idSale },
+			data : JSON.stringify({
+				"sales" : { "id": idSale },
+				"products" : { "id" : idProduct }
+			}),
 			dataType : 'json',
 			success : function(result) {
 				/*
@@ -43,7 +47,7 @@ $(function() {
 				$("#selectedProducts").append( "<td><button onclick='deleteProduct(" + element.id + ")'>" + "Eliminar" + "</button></td>" );
 				$("#selectedProducts").append( "</tr>" );
 				*/
-				console.log("Listo");
+				console.log(result);
 			},
 			error : function(e) {
 				alert("Error!");

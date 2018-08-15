@@ -24,11 +24,11 @@ public class ProductService {
 		return this.productRepository.save(product);
 	}
 	
-	public List<ProductEntity> search(String name, String upc) {
+	public List<ProductEntity> findByNameUpc(String name, String upc) {
 		return this.productRepository.findByNameContainingOrUpcContaining(name, upc);
 	}
 
-	public ProductEntity search(Integer id) {
+	public ProductEntity findById(Integer id) {
 		Optional<ProductEntity> found = this.productRepository.findById(id);
 		try {
 			return found.get();

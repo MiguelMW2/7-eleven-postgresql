@@ -7,5 +7,5 @@ import mx.ipn.cic.eleven.entities.DetailSaleEntity;
 
 @Repository
 public interface IDetailSaleRepository extends JpaRepository<DetailSaleEntity, Integer>{
-
+	DetailSaleEntity findBySales_IdAndProducts_Id(Integer idSale, Integer idProduct);
 }

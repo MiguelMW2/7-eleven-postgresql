@@ -4,25 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mx.ipn.cic.eleven.entities.DetailSaleEntity;
-import mx.ipn.cic.eleven.entities.ProductEntity;
-import mx.ipn.cic.eleven.entities.SaleEntity;
+import mx.ipn.cic.eleven.repositories.IDetailSaleRepository;
 
 @Service
 public class DetailSaleService {
-
+	
 	@Autowired
-	private DetailSaleService detailSaleService;
+	private IDetailSaleRepository detailSaleRepository;
 
-	public void save (ProductEntity product) {
-		DetailSaleEntity detailSale = new DetailSaleEntity(1, null, product);
-		
-		
+	public DetailSaleEntity save (Integer idSale, Integer idProduct) {
+		return this.detailSaleRepository.findBySales_IdAndProducts_Id(idSale, idProduct);
+		/*
 		if(detailSale.getQuantityProduct() == null) {
 			detailSale.setQuantityProduct(1);
 		}
 		else {
 			detailSale.setQuantityProduct(	detailSale.getQuantityProduct()	+ 1 );
 		}
-		//this.detailSaleService.save(detailSale);
+		//this.detailSaleService.save(detailSale);*/
 	}
 }
+	
