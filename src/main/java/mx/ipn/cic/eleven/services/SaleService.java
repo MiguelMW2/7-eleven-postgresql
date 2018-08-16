@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import mx.ipn.cic.eleven.entities.DetailSaleEntity;
 import mx.ipn.cic.eleven.entities.SaleEntity;
+import mx.ipn.cic.eleven.repositories.IDetailSaleRepository;
 import mx.ipn.cic.eleven.repositories.ISaleRepository;
 
 @Service
@@ -16,7 +17,10 @@ public class SaleService {
 
 	@Autowired
 	private ISaleRepository saleRepository;
-	
+
+	@Autowired
+	private IDetailSaleRepository detailSaleRepository;
+
 	public List<SaleEntity> allSales() {
 		return this.saleRepository.findAll();
 	}
@@ -53,8 +57,8 @@ public class SaleService {
 
 	public double calculate(SaleEntity sale) {
 		double result = 0;
-		for (DetailSaleEntity detailSale : sale.getDetailSales()) {
-			result = result + detailSale.getProducts().getPrice() * detailSale.getQuantityProduct();
+		for (DetailSaleEntity detailSale : this.detailSaleRepository.findBySales_Id(sale.getId())) {
+			result += detailSale.getProducts().getPrice() * detailSale.getQuantityProduct();
 		}
 		return result;
 	}

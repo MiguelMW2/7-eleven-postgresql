@@ -7,5 +7,5 @@ import mx.ipn.cic.eleven.entities.SaleEntity;
 
 @Repository
 public interface ISaleRepository extends JpaRepository<SaleEntity, Integer>{
-
+	
 }
