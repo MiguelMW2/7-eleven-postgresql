@@ -30,6 +30,7 @@
 	<div>
 		<form th:object="${sale}" th:action="@{/sale/total}">
 			<input id="idSale" hidden="true" th:field="*{id}">
+			<input hidden="true" th:field="*{date}">
 			<button type="submit">Siguiente</button>
 		</form>
 		<a th:href="@{/login/home}"><button>Menú Principal</button></a>

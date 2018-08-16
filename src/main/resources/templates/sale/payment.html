@@ -8,6 +8,8 @@
 <body>
 	<form th:action="@{/sale/register}" th:object="${sale}" method="post">
 		<input hidden="true" th:field="*{id}">
+		<input hidden="true" th:field="*{date}">
+		<input hidden="true" th:field="*{total}">
 		<select th:field="*{payment}">
 			<option value="Tarjeta Débito">Tarjeta Debito</option>
 			<option value="Tarjeta Crédito">Tarjeta Credito</option>
