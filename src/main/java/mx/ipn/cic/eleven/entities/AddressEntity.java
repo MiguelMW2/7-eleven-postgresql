@@ -34,6 +34,11 @@ public class AddressEntity {
 		super();
 	}
 
+	public AddressEntity(UserEntity users) {
+		super();
+		this.users = users;
+	}
+
 	public AddressEntity(Integer id, String street, String district, int externalNumber, int internalNumber,
 			String state, String zipCode, UserEntity user) {
 		super();

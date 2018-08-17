@@ -41,7 +41,10 @@ public class UserController {
 	@PostMapping(path="/register")
 	public String register(@ModelAttribute(name="user") UserEntity user) {
 		this.userService.register(user);
-		return "redirect:/address/newForm/" + user.getId();
+		if (this.addressService.findByUser_Id(user.getId()) == null) {
+			return "redirect:/address/newForm/" + user.getId();
+		}
+		return "redirect:/address/edit/" + user.getId();
 	}
 
 	@GetMapping(path="/edit/{id}")

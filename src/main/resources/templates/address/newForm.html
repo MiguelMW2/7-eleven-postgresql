@@ -15,7 +15,8 @@
 			<div class="col-6">
 				<h2>Dirección</h2>
 				<form class="form-signin" th:action="@{/address/register}" th:object="${address}" method="post">
-					<input hidden="true" th:field="${user.id}">
+					<input hidden="true" th:field="*{user.id}">
+					<input hidden="true" th:field="*{id}">
 					<div class="form-group">
 						<label for="street">Calle:</label>
 						<input type="text" th:field="*{street}" class="form-control" id="street">

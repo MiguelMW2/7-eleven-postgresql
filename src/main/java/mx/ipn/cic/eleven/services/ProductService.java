@@ -37,4 +37,9 @@ public class ProductService {
 		}
 		return null;
 	}
+
+	public boolean delete(Integer id) {
+		this.productRepository.deleteById(id);
+		return true;
+	}
 }

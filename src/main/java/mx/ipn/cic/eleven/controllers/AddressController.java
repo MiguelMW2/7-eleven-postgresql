@@ -34,17 +34,16 @@ public class AddressController {
 	@GetMapping(path="/newForm/{id}")
 	public ModelAndView newForm(@PathVariable(name="id") Integer id) {
 		ModelAndView mav = new ModelAndView("address/newForm");
-		mav.addObject("address", new AddressEntity());
-		mav.addObject("user", this.userService.findById(id));
+		UserEntity found = this.userService.findById(id);
+		mav.addObject("address", this.addressService.register(new AddressEntity(found)));
 		return mav;
 	}
 
 	@PostMapping(path="/register")
 	public String register(
-			@ModelAttribute(name="address") AddressEntity address,
-			@ModelAttribute(name="user") UserEntity user
+			@ModelAttribute(name="address") AddressEntity address
 	) {
-		UserEntity found = userService.findById(user.getId());
+		UserEntity found = this.userService.findById(address.getUser().getId());
 		address.setUser(found);
 		this.addressService.register(address);
 		return "redirect:/user/all";
@@ -52,7 +51,7 @@ public class AddressController {
 
 	@GetMapping(path="/edit/{id}")
 	public ModelAndView edit(@PathVariable(name="id") Integer id) {
-		AddressEntity found = this.addressService.findById(id);
+		AddressEntity found = this.addressService.findByUser_Id(id);
 		ModelAndView mav = new ModelAndView("address/newForm");
 		mav.addObject("address", found);
 		return mav;
