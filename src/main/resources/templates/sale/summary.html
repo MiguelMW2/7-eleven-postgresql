@@ -8,8 +8,11 @@
 <body>
 	<form th:action="@{/sale/register}" th:object="${sale}">
 		<input hidden="true" th:field="*{id}">
-		<p>Hola</p>
+		<input hidden="true" th:field="*{date}">
+		<input hidden="true" th:field="*{total}">
+		<input hidden="true" th:field="*{payment}">
 		<button type="submit">Pagar</button>
+		<p th:text="#{home.welcome}">Welcome to our grocery store!</p>
 	</form>
 </body>
 </html>

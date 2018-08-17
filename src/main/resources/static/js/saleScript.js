@@ -20,6 +20,7 @@ $(function() {
 					table += "<td><button onclick='selectProduct(" + idSale + "," + JSON.stringify(product) + ")'>" + "Seleccionar" + "</button></td>";
 					table += "</tr>";
 					$("#products").append(table);
+					$("#products td button").addClass("btn btn-danger w-100");
 				});
 			},
 			error : function(e) {

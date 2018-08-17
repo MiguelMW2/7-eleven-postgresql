@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,20 +36,30 @@ public class SaleController {
 		return mav;
 	}
 
-	@GetMapping(path="/total")
-	public ModelAndView payment(@ModelAttribute(name="sale") SaleEntity sale) {
-		ModelAndView mav = new ModelAndView("/sale/payment");
+	@PostMapping(path="/total")
+	public String total(@ModelAttribute(name="sale") SaleEntity sale) {
 		sale.setTotal(this.saleService.calculate(sale));
 		this.saleService.register(sale);
-		mav.addObject("sale", sale);
+		return "redirect:/sale/payment/" + sale.getId();
+	}
+
+	@GetMapping(path="/payment/{id}")
+	public ModelAndView payment(@PathVariable(name="id") Integer id) {
+		ModelAndView mav = new ModelAndView("/sale/payment");
+		mav.addObject("sale", this.saleService.findById(id));
 		return mav;
 	}
 
 	@PostMapping(path="/register")
-	public ModelAndView register(@ModelAttribute(name="sale") SaleEntity sale) {
-		ModelAndView mav = new ModelAndView("/sale/summary");
+	public String register(@ModelAttribute(name="sale") SaleEntity sale) {
 		this.saleService.register(sale);
-		mav.addObject("sale", sale);
+		return "redirect:/sale/summary/" + sale.getId();
+	}
+
+	@GetMapping(path="/summary/{id}")
+	public ModelAndView summary(@PathVariable(name="id") Integer id) {
+		ModelAndView mav = new ModelAndView("sale/summary");
+		mav.addObject("sale", this.saleService.findById(id));
 		return mav;
 	}
 }
