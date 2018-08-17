@@ -39,13 +39,9 @@ public class UserController {
 	}
 
 	@PostMapping(path="/register")
-	public ModelAndView register(@ModelAttribute(name="user") UserEntity user) {
-		ModelAndView mav = new ModelAndView("address/newForm");
-		UserEntity saved = new UserEntity();
-		saved = this.userService.register(user);
-		mav.addObject("user", saved);
-		mav.addObject("address", new AddressEntity());
-		return mav;
+	public String register(@ModelAttribute(name="user") UserEntity user) {
+		this.userService.register(user);
+		return "redirect:/address/newForm/" + user.getId();
 	}
 
 	@GetMapping(path="/edit/{id}")
@@ -58,8 +54,13 @@ public class UserController {
 
 	@GetMapping(path="/delete/{id}")
 	public String delete(@PathVariable(name="id") Integer id) {
-		AddressEntity address = this.addressService.findByUser_Id(id);
-		this.addressService.delete(address.getId());
+		try {
+			AddressEntity address = this.addressService.findByUser_Id(id);
+			this.addressService.delete(address.getId());
+		}
+		catch (Exception e) {
+			System.out.println("No se encontró el elemento");
+		}
 		this.userService.delete(id);
 		return "redirect:/user/all";
 	}

@@ -31,10 +31,11 @@ public class AddressController {
 		return mav;
 	}
 
-	@GetMapping(path="/newForm")
-	public ModelAndView newForm() {
+	@GetMapping(path="/newForm/{id}")
+	public ModelAndView newForm(@PathVariable(name="id") Integer id) {
 		ModelAndView mav = new ModelAndView("address/newForm");
-		mav.addObject("user", new UserEntity());
+		mav.addObject("address", new AddressEntity());
+		mav.addObject("user", this.userService.findById(id));
 		return mav;
 	}
 
