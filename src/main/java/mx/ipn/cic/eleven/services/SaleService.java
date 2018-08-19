@@ -57,8 +57,8 @@ public class SaleService {
 
 	public double calculate(SaleEntity sale) {
 		double result = 0;
-		for (DetailSaleEntity detailSale : this.detailSaleRepository.findBySales_Id(sale.getId())) {
-			result += detailSale.getProducts().getPrice() * detailSale.getQuantityProduct();
+		for (DetailSaleEntity detailSale : this.detailSaleRepository.findBySale_Id(sale.getId())) {
+			result += detailSale.getProduct().getPrice() * detailSale.getQuantity();
 		}
 		return result;
 	}

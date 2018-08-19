@@ -28,7 +28,7 @@ public class ProductEntity {
 
 	private String upc;
 
-	@OneToMany(mappedBy="products")
+	@OneToMany(mappedBy="product")
 	@JsonBackReference
 	private Collection<DetailSaleEntity> detailSales = new ArrayList<DetailSaleEntity>();
 

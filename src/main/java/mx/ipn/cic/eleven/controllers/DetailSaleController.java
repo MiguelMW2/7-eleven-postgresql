@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,9 +18,11 @@ public class DetailSaleController {
 	@Autowired
 	private DetailSaleService detailSaleService;
 
-	@RequestMapping(path="/save")
-	public String register(@RequestBody List<DetailSaleEntity> detailSaleList) {
-		this.detailSaleService.saveAll(detailSaleList);
-		return "redirect:";
+	@PostMapping(path="/save")
+	public String register(@RequestBody List<Object> detailSaleList) {
+		/*this.detailSaleService.saveAll(detailSaleList);
+		return "redirect:/sale/payment/";*/
+		System.out.println(detailSaleList);
+		return "redirect:/sale/payment/";
 	}
 }

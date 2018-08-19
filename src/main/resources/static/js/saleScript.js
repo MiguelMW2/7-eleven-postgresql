@@ -36,7 +36,7 @@ $(function() {
 		let selectedProduct = "tbody#selectedProducts tr#" + product.id;
 		if(! $(selectedProduct).length > 0) {
 			detailSale.push({
-				idProduct: product.id, quantity: 1
+				product: product, quantity: 1
 			});
 			let table = "<tr id='" + product.id + "'>";
 			table += "<td>" + product.name + "</td>";
@@ -47,7 +47,7 @@ $(function() {
 			$("#selectedProducts").append(table);
 		}
 		else {
-			let detail = findObject( detailSale, "idProduct", product.id );
+			let detail = findObject( detailSale, "id", product.id );
 			detail.quantity = detail.quantity + 1;
 			$("#selectedProducts tr#" + product.id + " td.quantity").text(detail.quantity);
 			console.log(detailSale);
@@ -74,7 +74,7 @@ $(function() {
 
 	findObject = function (array, key, value) {
 	    for (var i = 0; i < array.length; i++) {
-	        if (array[i][key] === value) {
+	        if (array[i]["product"][key] === value) {
 	            return array[i];
 	        }
 	    }

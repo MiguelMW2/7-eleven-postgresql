@@ -30,7 +30,7 @@ public class SaleEntity {
 	@JoinColumn(name="fk_users_id")
 	private UserEntity users;
 
-	@OneToMany(mappedBy="sales")
+	@OneToMany(mappedBy="sale")
 	@JsonBackReference
 	private Collection<DetailSaleEntity> detailSales = new ArrayList<DetailSaleEntity>();
 
