@@ -1,4 +1,4 @@
-package mx.ipn.cic.eleven.controllers;
+package mx.ipn.cic.eleven.rest_controllers;
 
 import java.util.List;
 

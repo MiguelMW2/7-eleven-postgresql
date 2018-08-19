@@ -1,4 +1,7 @@
 $(function() {
+	
+	var detailSale = [];
+	
 	$("#searchProduct").click(function () {
 		let name = $("#name").val();
 		let upc = $("#upc").val();
@@ -17,7 +20,7 @@ $(function() {
 					table += "<td>" + product.price + "</td>";
 					table += "<td>" + product.stock + "</td>";
 					table += "<td>" + product.upc + "</td>";
-					table += "<td><button onclick='selectProduct(" + idSale + "," + JSON.stringify(product) + ")'>" + "Seleccionar" + "</button></td>";
+					table += "<td><button onclick='selectProduct(" + JSON.stringify(product) + ")'>" + "Seleccionar" + "</button></td>";
 					table += "</tr>";
 					$("#products").append(table);
 					$("#products td button").addClass("btn btn-danger w-100");
@@ -26,36 +29,55 @@ $(function() {
 			error : function(e) {
 				alert("No se encontraron productos");
 			}
-		});	
+		});
 	});
 
-	selectProduct = function (idSale, product) {
+	selectProduct = function (product) {
+		let selectedProduct = "tbody#selectedProducts tr#" + product.id;
+		if(! $(selectedProduct).length > 0) {
+			detailSale.push({
+				idProduct: product.id, quantity: 1
+			});
+			let table = "<tr id='" + product.id + "'>";
+			table += "<td>" + product.name + "</td>";
+			table += "<td>" + product.description + "</td>";
+			table += "<td>" + product.price + "</td>"
+			table += "<td class='quantity'>" + 1 + "</td>"
+			table += "</tr>";
+			$("#selectedProducts").append(table);
+		}
+		else {
+			let detail = findObject( detailSale, "idProduct", product.id );
+			detail.quantity = detail.quantity + 1;
+			$("#selectedProducts tr#" + product.id + " td.quantity").text(detail.quantity);
+			console.log(detailSale);
+		}
+	}
+	
+	$("#sendDetailSale").click(function () {
 		$.ajax({
 			type : "POST",
 			contentType : "application/json",
-			url : "/rest/detailSale/save",
+			url : "/detailSale/save",
 			data : JSON.stringify({
-				"sales" : { "id": idSale },
-				"products" : product
+				"detailSale" : detailSale
 			}),
 			dataType : 'json',
 			success : function(result) {
-				if(!($("tbody#selectedProducts tr#" + result.products.id).length > 0)) {
-					let table = "<tr id='" + result.products.id + "'>";
-					table += "<td>" + result.products.name + "</td>";
-					table += "<td>" + result.products.description + "</td>";
-					table += "<td>" + result.products.price + "</td>"
-					table += "<td class='quantity'>" + result.quantityProduct + "</td>"
-					table += "</tr>";
-					$("#selectedProducts").append(table);
-				}
-				else {
-					$("#selectedProducts tr#" + result.products.id + " td.quantity").text(result.quantityProduct);
-				}
+				
 			},
 			error : function(e) {
 				alert("Error!");
 			}
 		});
+	});
+
+	findObject = function (array, key, value) {
+	    for (var i = 0; i < array.length; i++) {
+	        if (array[i][key] === value) {
+	            return array[i];
+	        }
+	    }
+	    return null;
 	}
 });

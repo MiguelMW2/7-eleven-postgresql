@@ -1,5 +1,7 @@
 package mx.ipn.cic.eleven.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,7 @@ public class DetailSaleService {
 	@Autowired
 	private IDetailSaleRepository detailSaleRepository;
 
-	public DetailSaleEntity save (DetailSaleEntity detailSale) {
+	public DetailSaleEntity save(DetailSaleEntity detailSale) {
 		DetailSaleEntity found = this.detailSaleRepository.findBySales_IdAndProducts_Id(detailSale.getSales().getId(), detailSale.getProducts().getId());
 		if (found == null) {
 			detailSale.setQuantityProduct(1);
@@ -23,5 +25,9 @@ public class DetailSaleService {
 			this.detailSaleRepository.save(found);
 			return found;
 		}
+	}
+	
+	public List<DetailSaleEntity> saveAll(List<DetailSaleEntity> detailSaleList) {
+		return this.detailSaleRepository.saveAll(detailSaleList);
 	}
 }

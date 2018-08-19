@@ -15,12 +15,8 @@
 		<div class="row">
 			<div class="col-1"></div>
 			<div class="col-10">
-				<form th:object="${sale}" th:action="@{/sale/total}" method="post">
-					<input id="idSale" hidden="true" th:field="*{id}">
-					<input hidden="true" th:field="*{date}">
-					<a class="btn btn-secondary w-10" th:href="@{/login/home}" role="button">Regresar</a>
-					<button type="submit" class="btn btn-primary w-10">Pagar</button>
-				</form>
+				<a class="btn btn-secondary w-10" th:href="@{/login/home}" role="button">Regresar</a>
+				<button id="sendDetailSale" type="submit" class="btn btn-primary w-10">Pagar</button>
 			</div>
 		</div>
 		<br>
