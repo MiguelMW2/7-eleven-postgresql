@@ -63,7 +63,7 @@ $(function() {
 			contentType : "application/json",
 			url : "/rest/detailSale/save",
 			data : JSON.stringify(detailSale),
-			dataType : 'json',
+			dataType : 'text',
 			success : function(result) {
 				window.location.href = "/sale/payment/" + result;
 			},

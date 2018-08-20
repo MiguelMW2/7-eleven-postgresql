@@ -1,7 +1,5 @@
 package mx.ipn.cic.eleven.controllers;
 
-import java.time.LocalDateTime;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,16 +29,7 @@ public class SaleController {
 	@GetMapping(path="/sale")
 	public ModelAndView sale() {
 		ModelAndView mav = new ModelAndView("/sale/sale");
-		SaleEntity sale = this.saleService.register(new SaleEntity(LocalDateTime.now()));
-		mav.addObject("sale", sale);
 		return mav;
-	}
-
-	@PostMapping(path="/total")
-	public String total(@ModelAttribute(name="sale") SaleEntity sale) {
-		sale.setTotal(this.saleService.calculate(sale));
-		this.saleService.register(sale);
-		return "redirect:/sale/payment/" + sale.getId();
 	}
 
 	@GetMapping(path="/payment/{id}")
@@ -52,6 +41,7 @@ public class SaleController {
 
 	@PostMapping(path="/register")
 	public String register(@ModelAttribute(name="sale") SaleEntity sale) {
+		sale.setTotal(this.saleService.calculate(sale));
 		this.saleService.register(sale);
 		return "redirect:/sale/summary/" + sale.getId();
 	}
