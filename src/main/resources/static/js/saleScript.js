@@ -44,8 +44,8 @@ $(function() {
 			let table = "<tr id='" + product.id + "'>";
 			table += "<td>" + product.name + "</td>";
 			table += "<td>" + product.description + "</td>";
-			table += "<td>" + product.price + "</td>"
-			table += "<td class='quantity'>" + 1 + "</td>"
+			table += "<td>" + product.price + "</td>";
+			table += "<td class='quantity'>" + 1 + "</td>";
 			table += "</tr>";
 			$("#selectedProducts").append(table);
 		}
