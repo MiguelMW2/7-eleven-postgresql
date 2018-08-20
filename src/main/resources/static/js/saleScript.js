@@ -1,7 +1,7 @@
 $(function() {
-	
+
 	var detailSale = [];
-	
+
 	$("#searchProduct").click(function () {
 		let name = $("#name").val();
 		let upc = $("#upc").val();
@@ -36,7 +36,14 @@ $(function() {
 		let selectedProduct = "tbody#selectedProducts tr#" + product.id;
 		if(! $(selectedProduct).length > 0) {
 			detailSale.push({
-				product: product, quantity: 1
+				
+					"id" : product.id,
+					"name" : product.name,
+					"description" : product.description,
+					"price" : product.price,
+					"stock" : product.stock,
+					"upc" : product.upc,
+				"quantity": 1
 			});
 			let table = "<tr id='" + product.id + "'>";
 			table += "<td>" + product.name + "</td>";
@@ -53,14 +60,14 @@ $(function() {
 			console.log(detailSale);
 		}
 	}
-	
+
 	$("#sendDetailSale").click(function () {
 		$.ajax({
 			type : "POST",
 			contentType : "application/json",
 			url : "/detailSale/save",
 			data : JSON.stringify({
-				"detailSale" : detailSale
+				detailSale
 			}),
 			dataType : 'json',
 			success : function(result) {
