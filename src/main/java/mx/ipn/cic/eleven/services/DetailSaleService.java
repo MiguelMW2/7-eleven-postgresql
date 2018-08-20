@@ -1,6 +1,5 @@
 package mx.ipn.cic.eleven.services;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,7 @@ public class DetailSaleService {
 	@Autowired
 	private IDetailSaleRepository detailSaleRepository;
 
-	public List<DetailSaleEntity> saveAll(List<DetailSaleEntity> detailSaleList) {
-		SaleEntity sale = new SaleEntity(LocalDateTime.now());
+	public List<DetailSaleEntity> saveAll(List<DetailSaleEntity> detailSaleList, SaleEntity sale) {
 		for(DetailSaleEntity detailSale: detailSaleList) {
 			detailSale.setSale(sale);
 		}

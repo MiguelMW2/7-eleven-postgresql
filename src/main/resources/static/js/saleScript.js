@@ -61,11 +61,11 @@ $(function() {
 		$.ajax({
 			type : "POST",
 			contentType : "application/json",
-			url : "/detailSale/save",
+			url : "/rest/detailSale/save",
 			data : JSON.stringify(detailSale),
 			dataType : 'json',
 			success : function(result) {
-				
+				window.location.href = "/sale/payment/" + result;
 			},
 			error : function(e) {
 				alert("Error!");
