@@ -36,13 +36,6 @@ public class SaleController {
 		return mav;
 	}
 
-	@PostMapping(path="/total")
-	public String total(@ModelAttribute(name="sale") SaleEntity sale) {
-		sale.setTotal(this.saleService.calculate(sale));
-		this.saleService.register(sale);
-		return "redirect:/sale/payment/" + sale.getId();
-	}
-
 	@GetMapping(path="/payment/{id}")
 	public ModelAndView payment(@PathVariable(name="id") Integer id) {
 		ModelAndView mav = new ModelAndView("/sale/payment");
@@ -52,6 +45,7 @@ public class SaleController {
 
 	@PostMapping(path="/register")
 	public String register(@ModelAttribute(name="sale") SaleEntity sale) {
+		sale.setTotal(this.saleService.calculate(sale));
 		this.saleService.register(sale);
 		return "redirect:/sale/summary/" + sale.getId();
 	}

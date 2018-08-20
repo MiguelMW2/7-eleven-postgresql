@@ -60,6 +60,7 @@ public class SaleService {
 		for (DetailSaleEntity detailSale : this.detailSaleRepository.findBySale_Id(sale.getId())) {
 			result += detailSale.getProduct().getPrice() * detailSale.getQuantity();
 		}
+		System.out.println(result);
 		return result;
 	}
 }
