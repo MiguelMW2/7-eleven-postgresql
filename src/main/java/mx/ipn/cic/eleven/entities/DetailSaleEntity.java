@@ -24,6 +24,10 @@ public class DetailSaleEntity {
 	@JoinColumn(name="fk_products_id")
 	private ProductEntity product;
 
+	public DetailSaleEntity() {
+		super();
+	}
+
 	public DetailSaleEntity(Integer id, double quantity, SaleEntity sale, ProductEntity product) {
 		super();
 		this.id = id;

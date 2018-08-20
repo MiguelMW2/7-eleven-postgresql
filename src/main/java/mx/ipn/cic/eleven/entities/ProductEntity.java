@@ -36,6 +36,16 @@ public class ProductEntity {
 		super();
 	}
 
+	public ProductEntity(Integer id, String name, String description, double price, double stock, String upc) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.stock = stock;
+		this.upc = upc;
+	}
+
 	public ProductEntity(Integer id, String name, String description, double price, double stock, String upc,
 			Collection<DetailSaleEntity> detailSales) {
 		super();

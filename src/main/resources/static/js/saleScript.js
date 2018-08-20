@@ -35,16 +35,12 @@ $(function() {
 	selectProduct = function (product) {
 		let selectedProduct = "tbody#selectedProducts tr#" + product.id;
 		if(! $(selectedProduct).length > 0) {
-			detailSale.push({
-				
-					"id" : product.id,
-					"name" : product.name,
-					"description" : product.description,
-					"price" : product.price,
-					"stock" : product.stock,
-					"upc" : product.upc,
-				"quantity": 1
-			});
+			detailSale.push(
+				{
+					"product" : product,
+					"quantity" : 1
+				}
+			);
 			let table = "<tr id='" + product.id + "'>";
 			table += "<td>" + product.name + "</td>";
 			table += "<td>" + product.description + "</td>";
@@ -66,9 +62,7 @@ $(function() {
 			type : "POST",
 			contentType : "application/json",
 			url : "/detailSale/save",
-			data : JSON.stringify({
-				detailSale
-			}),
+			data : JSON.stringify(detailSale),
 			dataType : 'json',
 			success : function(result) {
 				

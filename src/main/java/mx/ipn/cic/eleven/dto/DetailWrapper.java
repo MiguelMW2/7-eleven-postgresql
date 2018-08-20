@@ -4,13 +4,22 @@ import java.util.List;
 
 public class DetailWrapper {
 
-	private List<SaleDetailDto> detailSale;
+	private List<Wrapper> details;
 
-	public List<SaleDetailDto> getDetailSale() {
-		return detailSale;
+	public DetailWrapper() {
+		super();
 	}
 
-	public void setDetailSale(List<SaleDetailDto> detailSale) {
-		this.detailSale = detailSale;
+	public DetailWrapper(List<Wrapper> details) {
+		super();
+		this.details = details;
+	}
+
+	public List<Wrapper> getDetails() {
+		return details;
+	}
+
+	public void setDetails(List<Wrapper> details) {
+		this.details = details;
 	}
 }
